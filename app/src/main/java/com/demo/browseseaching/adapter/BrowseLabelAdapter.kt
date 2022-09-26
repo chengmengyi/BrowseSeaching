@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.demo.browseseaching.R
 import com.demo.browseseaching.manager.BrowseLabelManager
 import com.demo.browseseaching.util.printLog
+import com.demo.browseseaching.view.BrowseHomeView
+import com.demo.browseseaching.view.BrowseWebView
 import kotlinx.android.synthetic.main.all_label_item.view.*
 
 class BrowseLabelAdapter(
@@ -36,11 +38,19 @@ class BrowseLabelAdapter(
     override fun onBindViewHolder(holder: MyView, position: Int) {
         with(holder.itemView){
             val browseContentView = BrowseLabelManager.getLabelList()[position]
-            val homeBitmap = BrowseLabelManager.homeBitmap
-            printLog("==onBindViewHolder===${null!=homeBitmap}=")
-            if (null!=homeBitmap){
-                iv_label.setImageBitmap(homeBitmap)
+            val showView = browseContentView.getShowView()
+            if (showView is BrowseHomeView){
+                val homeBitmap = BrowseLabelManager.homeBitmap
+                if (null!=homeBitmap){
+                    iv_label.setImageBitmap(homeBitmap)
+                }
+            }else if (showView is BrowseWebView){
+                val webViewBitmap = showView.getWebViewBitmap()
+                if (null!=webViewBitmap){
+                    iv_label.setImageBitmap(webViewBitmap)
+                }
             }
+
         }
     }
 

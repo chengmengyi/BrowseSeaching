@@ -15,14 +15,17 @@ import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.demo.browseseaching.R
+import com.demo.browseseaching.eventbus.EventbusBean
+import com.demo.browseseaching.eventbus.EventbusCode
 import com.demo.browseseaching.interfaces.IUpdateBottomBtnListener
 import com.demo.browseseaching.util.LitePalUtil
 import com.demo.browseseaching.util.show
+import java.lang.Exception
 
 class BrowseWebView @JvmOverloads constructor(
     private val ctx: Context,
     private val incognito:Boolean,
-    private val listener:IUpdateBottomBtnListener,
+    private var listener:IUpdateBottomBtnListener,
     attrs: AttributeSet? = null,
 ) : LinearLayout(ctx, attrs){
 
@@ -40,6 +43,10 @@ class BrowseWebView @JvmOverloads constructor(
         webProgress=view.findViewById(R.id.web_progress)
         view.findViewById<AppCompatImageView>(R.id.iv_refresh).setOnClickListener {
             reLoadUrl()
+        }
+
+        view.findViewById<AppCompatImageView>(R.id.iv_web_home).setOnClickListener {
+            EventbusBean(EventbusCode.LOAD_HOME).send()
         }
 
         setWebView()
@@ -61,6 +68,19 @@ class BrowseWebView @JvmOverloads constructor(
 
     fun addBookmark(){
         LitePalUtil.saveBookmark(ctx,tvTitle?.text?.toString()?:"",webView.url?:"")
+    }
+
+    fun getWebViewBitmap():Bitmap?{
+        return try {
+            webView.isDrawingCacheEnabled=true
+            webView.drawingCache
+        }catch (e:Exception){
+            null
+        }
+    }
+
+    fun setListener(listener:IUpdateBottomBtnListener){
+        this.listener=listener
     }
 
     private fun setWebView(){

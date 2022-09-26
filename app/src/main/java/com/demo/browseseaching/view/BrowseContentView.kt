@@ -10,8 +10,8 @@ import com.demo.browseseaching.manager.BrowseLabelManager
 
 class BrowseContentView(
     private val context:Context,
-    private val listener: IUpdateBottomBtnListener,
-    private val homeClickListener: IBrowseHomeClickListener,
+    private var listener: IUpdateBottomBtnListener,
+    private var homeClickListener: IBrowseHomeClickListener,
     private val incognito:Boolean=false,
 ) {
     private var showHome=true
@@ -32,6 +32,18 @@ class BrowseContentView(
             }
         }
         return null
+    }
+
+    fun setAllListener(homeClickListener: IBrowseHomeClickListener,listener:IUpdateBottomBtnListener){
+        this.listener=listener
+        this.homeClickListener=homeClickListener
+        viewList.forEach {
+            if(it is BrowseHomeView){
+                it.setListener(homeClickListener)
+            }else if (it is BrowseWebView){
+                it.setListener(listener)
+            }
+        }
     }
 
     fun getShowView():View{

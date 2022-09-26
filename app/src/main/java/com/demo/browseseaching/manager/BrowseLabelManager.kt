@@ -24,6 +24,10 @@ object BrowseLabelManager {
         this.iUpdateContentViewListener=iUpdateContentViewListener
         if (labelList.isEmpty()){
             labelList.add(BrowseContentView(context,listener,iBrowseHomeClickListener))
+        }else{
+            labelList.forEach {
+                it.setAllListener(iBrowseHomeClickListener,listener)
+            }
         }
     }
 

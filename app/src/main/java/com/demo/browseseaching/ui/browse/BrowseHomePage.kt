@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.layout_browse_bottom.*
 import org.greenrobot.eventbus.Subscribe
 import android.view.View
 import android.view.ViewGroup
+import com.demo.browseseaching.dialog.SearchDialog
 import com.demo.browseseaching.view.BrowseHomeView
 import com.demo.browseseaching.view.BrowseWebView
 
@@ -38,6 +39,7 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
         BrowseLabelManager.initView(this,this,this,this)
         addView()
         setAdapter()
+        changeTopStatusColor()
     }
 
     private fun addView(){
@@ -55,6 +57,10 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
 
     private fun showSearchResult(content:String){
         val url = SearchEngineManager.getLoadUrl(content)
+        loadUrlInThisLabel(url)
+    }
+
+    private fun loadUrlInThisLabel(url: String){
         BrowseLabelManager.getCurrentLabelView().loadUrl(url){
             immersionBar
                 .statusBarColor(R.color.color_5854BE)
@@ -65,10 +71,7 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
 
     private fun removeChild(){
         browse_framelayout.removeAllViews()
-//        browse_framelayout.removeAllViewsInLayout()
-//        val currentLabelView = BrowseLabelManager.getCurrentLabelView()
-////        browse_framelayout.removeView(currentLabelView.getShowView())
-//        currentLabelView.onDestroy()
+        browse_framelayout.removeAllViewsInLayout()
     }
 
     private fun clickBottom(index:Int){
@@ -80,7 +83,10 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
         when(index){
             0-> currentLabelView.clickBottomBack()
             1-> currentLabelView.clickBottomFroward()
-            2-> currentLabelView.showHome()
+            2-> {
+                currentLabelView.showHome()
+                updateShowContentView()
+            }
             3-> {
                 BrowseLabelManager.getHomeBitmap()
                 startActivity(Intent(this,AllLabelPage::class.java))
@@ -105,11 +111,13 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
             1->{
                 BrowseLabelManager.addLabel(this,this,this){
                     addView()
+                    changeTopStatusColor()
                 }
             }
             2->{
                 BrowseLabelManager.addLabel(this,this,this,incognito = true){
                     addView()
+                    changeTopStatusColor()
                 }
             }
             3->{
@@ -122,6 +130,9 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
                     currentLabelView.addBookmark()
                 }
             }
+            5->openLabelOrReadListPage(true)
+            6->openLabelOrReadListPage(false)
+            8->openHistoryPage()
         }
     }
 
@@ -144,11 +155,7 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
 
     override fun updateShowContentView() {
         addView()
-        if (BrowseLabelManager.getCurrentLabelView().showingHome()){
-            immersionBar
-                .statusBarColor(R.color.color_00000000)
-                .init()
-        }
+        changeTopStatusColor()
     }
 
     override fun deleteContentView() {
@@ -161,16 +168,47 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
         finish()
     }
 
+    override fun openSearch() {
+        val searchDialog = SearchDialog()
+        searchDialog.show(supportFragmentManager,"SearchDialog")
+    }
+
+    override fun loadUrlCurrentLabel(url: String) {
+        loadUrlInThisLabel(url)
+    }
+
     override fun openNewLabel(url: String) {
         BrowseLabelManager.addWebLabel(this,url,this,this){
             addView()
-            immersionBar.statusBarColor(R.color.color_5854BE).init()
+            changeTopStatusColor()
         }
     }
 
     override fun openWebUrlByIncognito(url: String) {
         BrowseLabelManager.addWebLabel(this,url,this,this,incognito = true){
             addView()
+            changeTopStatusColor()
+        }
+    }
+
+    override fun openHistoryPage() {
+        startActivity(Intent(this,HistoryPage::class.java))
+    }
+
+    override fun openLabelOrReadListPage(isBook: Boolean) {
+        startActivity(
+            Intent(this,BookmarkReadLaterPage::class.java).apply {
+                putExtra("isBook",true)
+            }
+        )
+    }
+
+    private fun changeTopStatusColor(){
+        if (BrowseLabelManager.getCurrentLabelView().showingHome()){
+            immersionBar
+                .statusBarColor(R.color.color_00000000)
+                .init()
+        }else{
             immersionBar.statusBarColor(R.color.color_5854BE).init()
         }
     }
@@ -195,15 +233,17 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
                     openNewLabel(bookmarkBean.webUrl)
                 }
             }
+            EventbusCode.LOAD_HOME->{
+                clickBottom(2)
+            }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-//        removeChild()
         val currentLabelView = BrowseLabelManager.getCurrentLabelView()
-//        browse_framelayout.removeView(currentLabelView.getShowView())
         currentLabelView.onDestroy()
+        BrowseLabelManager.homeBitmap=null
     }
 
 }

@@ -23,11 +23,12 @@ import com.demo.browseseaching.manager.PopupManager
 import com.demo.browseseaching.ui.browse.BookmarkReadLaterPage
 import com.demo.browseseaching.ui.browse.HistoryPage
 import com.demo.browseseaching.util.copyText
+import com.demo.browseseaching.util.printLog
 import com.demo.browseseaching.util.shareUrl
 
 class BrowseHomeView @JvmOverloads constructor(
     private val ctx: Context,
-    private val homeClickListener: IBrowseHomeClickListener,
+    private var homeClickListener: IBrowseHomeClickListener,
     attrs: AttributeSet? = null,
 ) : LinearLayout(ctx, attrs) {
     private var rvFunc:RecyclerView?=null
@@ -66,30 +67,22 @@ class BrowseHomeView @JvmOverloads constructor(
 
     private fun clickFuncItem(funcBean: BrowseHomeFuncBean){
         when(funcBean.index){
-            7->context.startActivity(Intent(context,HistoryPage::class.java))
-            4->context.startActivity(
-                Intent(context,BookmarkReadLaterPage::class.java).apply {
-                    putExtra("isBook",true)
-                }
-            )
-            5->context.startActivity(
-                Intent(context,BookmarkReadLaterPage::class.java).apply {
-                    putExtra("isBook",false)
-                }
-            )
+            0,1,2,3->{
+                homeClickListener.loadUrlCurrentLabel(funcBean.webUrl?:"")
+            }
+            4->homeClickListener.openLabelOrReadListPage(true)
+            5->homeClickListener.openLabelOrReadListPage(false)
+            7->homeClickListener.openHistoryPage()
         }
     }
 
     init {
-        val view = LayoutInflater.from(context).inflate(R.layout.browse_home_view, this)
+        val view = LayoutInflater.from(ctx).inflate(R.layout.browse_home_view, this,false)
         rvFunc=view.findViewById(R.id.rv_browse_home_func)
         rootLayout = view.findViewById(R.id.root_layout)
 
         view.findViewById<LinearLayoutCompat>(R.id.llc_search).setOnClickListener {
-            if (ctx is FragmentActivity){
-                val searchDialog = SearchDialog()
-                searchDialog.show(ctx.supportFragmentManager,"SearchDialog")
-            }
+            homeClickListener.openSearch()
         }
 
         view.findViewById<AppCompatImageView>(R.id.iv_back).setOnClickListener {
@@ -97,6 +90,11 @@ class BrowseHomeView @JvmOverloads constructor(
         }
 
         setAdapter()
+        addView(view)
+    }
+
+    fun setListener(homeClickListener: IBrowseHomeClickListener){
+        this.homeClickListener=homeClickListener
     }
 
     fun getRootLayoutBitmap():Bitmap?{

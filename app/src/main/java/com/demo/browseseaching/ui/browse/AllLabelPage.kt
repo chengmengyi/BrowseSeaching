@@ -45,6 +45,7 @@ class AllLabelPage: BasePage(R.layout.activity_all_label) {
     private fun deleteLabel(index: Int){
         val clickLabelView=BrowseLabelManager.getLabelList()[index]
         BrowseLabelManager.removeContentView(index,clickLabelView){
+            BrowseLabelManager.homeBitmap=null
             if (it){
                 finish()
             }else{

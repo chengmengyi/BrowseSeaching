@@ -35,6 +35,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.browse.SearchEnginesPage"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.PolicyPage"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

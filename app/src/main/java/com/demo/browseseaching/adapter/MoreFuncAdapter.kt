@@ -25,7 +25,7 @@ class MoreFuncAdapter(
         list.add(BrowseHomeFuncBean(R.drawable.read_list,"Reading list"))
         list.add(BrowseHomeFuncBean(R.drawable.open_recent_label,"Recently opened tabs"))
         list.add(BrowseHomeFuncBean(R.drawable.history,"History"))
-        list.add(BrowseHomeFuncBean(R.drawable.more_set,"Setting"))
+//        list.add(BrowseHomeFuncBean(R.drawable.more_set,"Setting"))
     }
 
     inner class MyView(view:View):RecyclerView.ViewHolder(view){
