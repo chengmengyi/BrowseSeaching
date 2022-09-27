@@ -36,6 +36,8 @@ class BrowseWebView @JvmOverloads constructor(
 
     private var webUrl:String=""
 
+    private var firstLoad=true
+
     init {
         val view = LayoutInflater.from(ctx).inflate(R.layout.browse_web_view, this)
         webView=view.findViewById(R.id.web_view)
@@ -53,6 +55,7 @@ class BrowseWebView @JvmOverloads constructor(
     }
 
     fun loadUrl(url:String){
+        firstLoad=true
         this.webUrl=url
         webView.loadUrl(url)
     }
@@ -136,6 +139,10 @@ class BrowseWebView @JvmOverloads constructor(
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
                     LitePalUtil.saveHistoryUrl(view?.title?:"",url?:"")
+                    if (firstLoad){
+                        firstLoad=false
+                        LitePalUtil.saveRecent(view?.title?:"",url?:"")
+                    }
                     listener.updateBottomBtnState(updateBack = true, updateForward = webView.canGoForward(),updateMore = true)
                 }
             }
