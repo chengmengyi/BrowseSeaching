@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/bg_161458_24dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_4de29aff_8dp.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/bg_5451b6_24dp.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable/bg_5c59b8_12dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_6400ff_8dp.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/bg_99ffffff_24dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_99ffffff_5dp.xml" value="0.29384615384615387" />
@@ -45,6 +46,7 @@
         <entry key="app/src/main/res/layout/layout_long_click_popup.xml" value="0.18795289855072464" />
         <entry key="app/src/main/res/layout/layout_more_dialog.xml" value="0.19746376811594202" />
         <entry key="app/src/main/res/layout/layout_more_func_item.xml" value="0.18795289855072464" />
+        <entry key="app/src/main/res/layout/layout_native_ad.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout_search_engines_item.xml" value="0.18795289855072464" />
         <entry key="app/src/main/res/layout/layout_set_item.xml" value="0.18795289855072464" />
       </map>

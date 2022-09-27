@@ -80,3 +80,12 @@ fun Context.updateApp() {
     }
     startActivity(intent)
 }
+
+
+fun createNumKey(type:String): String {
+    return try {
+        "$type...${SimpleDateFormat("yyyy-MM-dd").format(Date(System.currentTimeMillis()))}"
+    } catch (e: Exception) {
+        type
+    }
+}
