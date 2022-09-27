@@ -2,7 +2,7 @@
     <!--数据库名称 -->
     <dbname value="browse" />
     <!--数据库版本,如果升级需要手动添加 -->
-    <version value="4" />
+    <version value="5" />
     <!--storage数据库存储路径-->
     <!--    <storage value="LSX/Database" />-->
     <!--数据库中的表,一个类一个表 -->
@@ -10,6 +10,7 @@
         <mapping class="com.demo.browseseaching.bean.HistoryBean"/>
         <mapping class="com.demo.browseseaching.bean.ReadLaterBean"/>
         <mapping class="com.demo.browseseaching.bean.BookmarkBean"/>
+        <mapping class="com.demo.browseseaching.bean.RecentBean"/>
     </list>
 
 </litepal>

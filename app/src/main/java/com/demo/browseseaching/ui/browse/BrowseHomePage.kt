@@ -132,6 +132,7 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
             }
             5->openLabelOrReadListPage(true)
             6->openLabelOrReadListPage(false)
+            7->openRecent()
             8->openHistoryPage()
         }
     }
@@ -201,6 +202,10 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
                 putExtra("isBook",true)
             }
         )
+    }
+
+    override fun openRecent() {
+        startActivity(Intent(this,RecentPage::class.java))
     }
 
     private fun changeTopStatusColor(){

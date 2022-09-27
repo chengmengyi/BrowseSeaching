@@ -28,6 +28,7 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2318840579710145" />
         <entry key="app/src/main/res/layout/activity_policy.xml" value="0.21195652173913043" />
+        <entry key="app/src/main/res/layout/activity_recent.xml" value="0.2033514492753623" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/activity_search_engines.xml" value="0.18795289855072464" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.18795289855072464" />
@@ -47,6 +48,7 @@
         <entry key="app/src/main/res/layout/layout_more_dialog.xml" value="0.19746376811594202" />
         <entry key="app/src/main/res/layout/layout_more_func_item.xml" value="0.18795289855072464" />
         <entry key="app/src/main/res/layout/layout_native_ad.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/layout_recent_item.xml" value="0.2033514492753623" />
         <entry key="app/src/main/res/layout/layout_search_engines_item.xml" value="0.18795289855072464" />
         <entry key="app/src/main/res/layout/layout_set_item.xml" value="0.18795289855072464" />
       </map>

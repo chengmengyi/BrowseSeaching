@@ -72,6 +72,7 @@ class BrowseHomeView @JvmOverloads constructor(
             }
             4->homeClickListener.openLabelOrReadListPage(true)
             5->homeClickListener.openLabelOrReadListPage(false)
+            6->homeClickListener.openRecent()
             7->homeClickListener.openHistoryPage()
         }
     }

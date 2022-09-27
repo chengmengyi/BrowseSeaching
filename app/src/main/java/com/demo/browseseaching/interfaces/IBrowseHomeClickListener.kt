@@ -9,4 +9,5 @@ interface IBrowseHomeClickListener {
     fun openWebUrlByIncognito(url:String)
     fun openHistoryPage()
     fun openLabelOrReadListPage(isBook:Boolean)
+    fun openRecent()
 }

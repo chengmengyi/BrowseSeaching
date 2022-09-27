@@ -5,6 +5,7 @@ import android.net.Uri
 import com.demo.browseseaching.bean.BookmarkBean
 import com.demo.browseseaching.bean.HistoryBean
 import com.demo.browseseaching.bean.ReadLaterBean
+import com.demo.browseseaching.bean.RecentBean
 import org.litepal.LitePal
 import java.lang.Exception
 
@@ -95,6 +96,24 @@ class LitePalUtil {
                 .limit(20)
                 .offset(currentNum)
                 .find(BookmarkBean::class.java)
+        }
+
+        fun saveRecent(title:String,url:String){
+            try {
+                val parse = Uri.parse(url)
+                val logo="${parse.scheme}://${parse.host}/favicon.ico"
+                val save = RecentBean(title, url, logo, time = System.currentTimeMillis()).save()
+            }catch (e:Exception){
+
+            }
+        }
+
+        fun getRecentList():List<RecentBean>{
+            return LitePal.select("*")
+                .order("time desc")
+                .limit(10)
+                .offset(0)
+                .find(RecentBean::class.java)
         }
     }
 }

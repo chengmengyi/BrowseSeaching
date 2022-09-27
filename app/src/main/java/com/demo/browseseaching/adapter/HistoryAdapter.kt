@@ -37,7 +37,7 @@ class HistoryAdapter(
                 tv_title.text=historyBean.title
             }
             if (holder is ContentVH){
-                tv_web_title.text="${historyBean.title}--${historyBean.time}"
+                tv_web_title.text="${historyBean.title}"
                 tv_web_url.text=historyBean.webUrl
                 Glide.with(ctx)
                     .load(historyBean.iconUrl)
