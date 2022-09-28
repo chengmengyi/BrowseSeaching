@@ -84,7 +84,7 @@ abstract class LoadAdmob {
             .withNativeAdOptions(
                 NativeAdOptions.Builder()
                     .setAdChoicesPlacement(
-                        NativeAdOptions.ADCHOICES_TOP_LEFT
+                        NativeAdOptions.ADCHOICES_BOTTOM_LEFT
                     )
                     .build()
             )

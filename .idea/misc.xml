@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/drawable/bg_6400ff_8dp.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/bg_99ffffff_24dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_99ffffff_5dp.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable/bg_f6840f_8dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_fff_5dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_ffffff_12dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_ffffff_16dp.xml" value="0.2916666666666667" />
@@ -37,6 +38,7 @@
         <entry key="app/src/main/res/layout/browse_home_view.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/browse_web_view.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/layout_bookmark_item.xml" value="0.18795289855072464" />
+        <entry key="app/src/main/res/layout/layout_bookmark_native_ad.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout_browse_bottom.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/layout_browse_bottom_item.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/layout_browse_home.xml" value="0.20697463768115942" />

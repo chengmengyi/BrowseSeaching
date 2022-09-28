@@ -17,6 +17,7 @@ class ShowFullAd(
     private val type: String,
     private val showCompleted:()->Unit
 ) {
+    fun hasAdRes()=null!=LoadAdManager.getAdResData(type)
 
     fun checkShow(refreshUI:(jump:Boolean)->Unit){
         val adResData = LoadAdManager.getAdResData(type)

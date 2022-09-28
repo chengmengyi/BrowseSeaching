@@ -62,12 +62,18 @@
         app:layout_constraintRight_toRightOf="@id/search_bg"
         app:layout_constraintBottom_toBottomOf="@id/search_bg"
         />
+    <include
+        android:id="@+id/ad"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        layout="@layout/layout_bookmark_native_ad"
+        app:layout_constraintTop_toBottomOf="@id/search_bg"/>
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_bg">
+        app:layout_constraintTop_toBottomOf="@id/ad">
         <com.scwang.smart.refresh.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

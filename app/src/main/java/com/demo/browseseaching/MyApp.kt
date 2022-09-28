@@ -3,6 +3,8 @@ package com.demo.browseseaching
 import android.app.Application
 import com.demo.browseseaching.config.ReadFirebase
 import com.demo.browseseaching.manager.SearchEngineManager
+import com.demo.browseseaching.point.PointCommonUtil
+import com.demo.browseseaching.point.PointUtil
 import com.tencent.mmkv.MMKV
 import org.litepal.LitePal
 
@@ -15,5 +17,6 @@ class MyApp:Application() {
         LitePal.initialize(this)
         SearchEngineManager.init()
         ReadFirebase.readFireBase()
+        PointUtil.uploadTBA(this)
     }
 }

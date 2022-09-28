@@ -199,7 +199,7 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
     override fun openLabelOrReadListPage(isBook: Boolean) {
         startActivity(
             Intent(this,BookmarkReadLaterPage::class.java).apply {
-                putExtra("isBook",true)
+                putExtra("isBook",isBook)
             }
         )
     }

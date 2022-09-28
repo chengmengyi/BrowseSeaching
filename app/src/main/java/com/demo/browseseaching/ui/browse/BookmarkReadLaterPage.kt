@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.browseseaching.R
 import com.demo.browseseaching.adapter.BookmarkReadLaterAdapter
+import com.demo.browseseaching.admob.AdType
+import com.demo.browseseaching.admob.LoadAdManager
+import com.demo.browseseaching.admob.ShowFullAd
 import com.demo.browseseaching.base.BasePage
 import com.demo.browseseaching.bean.BookmarkBean
 import com.demo.browseseaching.bean.ReadLaterBean
@@ -31,6 +34,8 @@ class BookmarkReadLaterPage:BasePage(R.layout.activity_bookmark_readlater), OnRe
     private val bookList= arrayListOf<BookmarkBean>()
     private val readList= arrayListOf<ReadLaterBean>()
 
+    private lateinit var showAd:ShowFullAd
+
     private val bookAdapter by lazy { BookmarkReadLaterAdapter(this,isBook,bookList,readList){
         EventbusBean(EventbusCode.CLICK_RECORD_ITEM, any = it).send()
         finish()
@@ -40,7 +45,8 @@ class BookmarkReadLaterPage:BasePage(R.layout.activity_bookmark_readlater), OnRe
         immersionBar.statusBarView(top_view).init()
         isBook = intent.getBooleanExtra("isBook", false)
         tv_title.text=if (isBook) "BookMark" else "Reading list"
-        iv_back.setOnClickListener { finish() }
+        initAd()
+        iv_back.setOnClickListener { onBackPressed() }
 
         setAdapter()
 
@@ -119,4 +125,18 @@ class BookmarkReadLaterPage:BasePage(R.layout.activity_bookmark_readlater), OnRe
         }
     }
 
+
+    private fun initAd(){
+        val type = if (isBook) AdType.AD_TYPE_BOOKMARK else AdType.AD_TYPE_LATER
+        LoadAdManager.check(type)
+        showAd= ShowFullAd(this,type){ finish() }
+    }
+
+    override fun onBackPressed() {
+        if (showAd.hasAdRes()){
+            showAd.checkShow {  }
+            return
+        }
+        finish()
+    }
 }

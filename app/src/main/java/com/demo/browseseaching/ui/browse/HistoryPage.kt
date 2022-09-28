@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.browseseaching.R
 import com.demo.browseseaching.adapter.HistoryAdapter
+import com.demo.browseseaching.admob.AdType
+import com.demo.browseseaching.admob.ShowNativeAd
 import com.demo.browseseaching.bean.HistoryBean
 import com.demo.browseseaching.base.BasePage
 import com.demo.browseseaching.bean.BookmarkBean
@@ -25,6 +27,8 @@ import kotlinx.android.synthetic.main.activity_history.top_view
 import kotlinx.android.synthetic.main.activity_search.*
 
 class HistoryPage: BasePage(R.layout.activity_history), OnRefreshLoadMoreListener {
+    private val showAd by lazy { ShowNativeAd(this, AdType.AD_TYPE_HISTORY) }
+
     private var currentNum=0
     private var content=""
     private val historyList= arrayListOf<HistoryBean>()
@@ -128,4 +132,13 @@ class HistoryPage: BasePage(R.layout.activity_history), OnRefreshLoadMoreListene
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        showAd.checkHasAdRes()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        showAd.stopCheck()
+    }
 }
