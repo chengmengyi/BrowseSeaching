@@ -6,7 +6,8 @@ class ReadLaterBean(
     val title:String="",
     val webUrl:String="",
     val iconUrl:String="",
-    var time:Long=0
+    var time:Long=0,
+    var isOpen:Boolean=false
 ): LitePalSupport(){
 
 }

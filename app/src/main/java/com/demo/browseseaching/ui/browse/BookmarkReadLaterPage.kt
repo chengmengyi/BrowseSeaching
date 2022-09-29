@@ -31,10 +31,16 @@ class BookmarkReadLaterPage:BasePage(R.layout.activity_bookmark_readlater), OnRe
     private val bookList= arrayListOf<BookmarkBean>()
     private val readList= arrayListOf<ReadLaterBean>()
 
-    private val bookAdapter by lazy { BookmarkReadLaterAdapter(this,isBook,bookList,readList){
-        EventbusBean(EventbusCode.CLICK_RECORD_ITEM, any = it).send()
-        finish()
-    } }
+    private val bookAdapter by lazy { BookmarkReadLaterAdapter(
+        this,
+        isBook,
+        bookList,
+        readList,
+        clickItem = {
+            EventbusBean(EventbusCode.CLICK_RECORD_ITEM, any = it).send()
+            finish()
+        }
+    )}
 
     override fun initView() {
         immersionBar.statusBarView(top_view).init()

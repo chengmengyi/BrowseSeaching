@@ -1,5 +1,7 @@
 package com.demo.browseseaching.dialog
 
+import android.content.Context
+import android.os.Handler
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
@@ -9,6 +11,16 @@ import com.demo.browseseaching.base.BaseDialogFragment
 import com.demo.browseseaching.eventbus.EventbusBean
 import com.demo.browseseaching.eventbus.EventbusCode
 import kotlinx.android.synthetic.main.activity_search.*
+import java.util.*
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
+
+
+
+
+
+
 
 class SearchDialog:BaseDialogFragment(R.layout.activity_search) {
     override fun onStart() {
@@ -36,5 +48,10 @@ class SearchDialog:BaseDialogFragment(R.layout.activity_search) {
                 return false
             }
         })
+
+        Handler().postDelayed({
+            val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS)
+        },1000)
     }
 }

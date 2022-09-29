@@ -17,8 +17,7 @@ class BrowseHomeFuncAdapter(
     private val funcList= arrayListOf<BrowseHomeFuncBean>()
     init {
         funcList.clear()
-//        funcList.add(BrowseHomeFuncBean(R.drawable.dailymotion,"instagram",index=0, webUrl = "https://www.instagram.com/"))
-        funcList.add(BrowseHomeFuncBean(R.drawable.dailymotion,"instagram",index=0, webUrl = "https://www.baidu.com/"))
+        funcList.add(BrowseHomeFuncBean(R.drawable.dailymotion,"instagram",index=0, webUrl = "https://www.instagram.com/"))
         funcList.add(BrowseHomeFuncBean(R.drawable.facebook,"Facebook",index=1, webUrl = "https://www.facebook.com/"))
         funcList.add(BrowseHomeFuncBean(R.drawable.netflix222,"Netfilx",index=2, webUrl = "https://www.netflix.com/"))
         funcList.add(BrowseHomeFuncBean(R.drawable.gmail,"Youtube", index = 3, webUrl = "https://www.youtube.com/"))

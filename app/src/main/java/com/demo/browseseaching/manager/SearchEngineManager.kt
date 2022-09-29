@@ -28,7 +28,7 @@ object SearchEngineManager {
         var url=content
         var isUrl = content.lowercase().startsWith("http")
         if (!isUrl){
-            url="${getCurrentEngine()}$url"
+            url="${getCurrentEngine().url}$url"
         }
         return url
     }

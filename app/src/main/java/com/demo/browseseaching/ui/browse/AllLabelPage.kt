@@ -7,23 +7,28 @@ import com.demo.browseseaching.eventbus.EventbusBean
 import com.demo.browseseaching.eventbus.EventbusCode
 import com.demo.browseseaching.manager.BrowseLabelManager
 import com.demo.browseseaching.base.BasePage
+import com.demo.browseseaching.view.BrowseContentView
 import kotlinx.android.synthetic.main.activity_all_label.*
 
 class AllLabelPage: BasePage(R.layout.activity_all_label) {
-    private val labelAdapter by lazy { BrowseLabelAdapter(
-        this,
-        click = {
-            BrowseLabelManager.updateShowIndex(it)
-            finish()
-        },
-        deleteLabel = {
-            deleteLabel(it)
-        }
-    )}
+    private val labelList= arrayListOf<BrowseContentView>()
+    private lateinit var labelAdapter:BrowseLabelAdapter
 
     override fun initView() {
         immersionBar.statusBarView(top_view).init()
 
+        labelList.addAll(BrowseLabelManager.getLabelList())
+        labelAdapter=BrowseLabelAdapter(
+            this,
+            labelList,
+            click = {
+                BrowseLabelManager.updateShowIndex(it)
+                finish()
+            },
+            deleteLabel = {
+                deleteLabel(it)
+            }
+        )
         rv_label.apply {
             val gridLayoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
             gridLayoutManager.reverseLayout=true
@@ -43,14 +48,20 @@ class AllLabelPage: BasePage(R.layout.activity_all_label) {
     }
 
     private fun deleteLabel(index: Int){
-        val clickLabelView=BrowseLabelManager.getLabelList()[index]
-        BrowseLabelManager.removeContentView(index,clickLabelView){
-            BrowseLabelManager.homeBitmap=null
-            if (it){
-                finish()
-            }else{
+        val clickLabelView=labelList[index]
+        BrowseLabelManager.removeContentView(
+            index,
+            clickLabelView,
+            result = {
+                BrowseLabelManager.homeBitmap=null
+                if (it){
+                    finish()
+                }
+            },
+            deleteFinish = {
+                labelList.removeAt(index)
                 labelAdapter.notifyDataSetChanged()
             }
-        }
+        )
     }
 }

@@ -56,7 +56,11 @@ class BrowseContentView(
         return viewList.first()
     }
 
-    fun loadUrl(url:String,success:()->Unit){
+    fun loadUrl(url:String,removeWeb:Boolean=false,success:()->Unit){
+        if (removeWeb&&viewList.size==2){
+            viewList.removeAt(1)
+        }
+
         if (viewList.size==1){
             viewList.add(BrowseWebView(context,incognito, listener = listener))
         }

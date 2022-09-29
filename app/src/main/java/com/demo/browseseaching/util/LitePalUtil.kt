@@ -42,10 +42,18 @@ class LitePalUtil {
 
         fun saveReadLater(context: Context,title:String,url:String){
             try {
-                val parse = Uri.parse(url)
-                val logo="${parse.scheme}://${parse.host}/favicon.ico"
-                val save = ReadLaterBean(title, url, logo, time = System.currentTimeMillis()).save()
-                context.toast(if (save) "Successfully added" else "Add failed")
+                val find = LitePal.select("*")
+                    .where("webUrl = ?", url)
+                    .order("time desc")
+                    .limit(200)
+                    .offset(0)
+                    .find(ReadLaterBean::class.java)
+                if (find?.isEmpty() == true){
+                    val parse = Uri.parse(url)
+                    val logo="${parse.scheme}://${parse.host}/favicon.ico"
+                    val save = ReadLaterBean(title, url, logo, time = System.currentTimeMillis()).save()
+                    context.toast(if (save) "Successfully added" else "Add failed")
+                }
             }catch (e:Exception){
 
             }
@@ -68,14 +76,24 @@ class LitePalUtil {
                 .find(ReadLaterBean::class.java)
         }
 
-
+        fun deleteReadLater(bean: ReadLaterBean): Int {
+            return LitePal.deleteAll(ReadLaterBean::class.java, "time = ?", "${bean.time}")
+        }
 
         fun saveBookmark(context: Context,title:String,url:String){
             try {
-                val parse = Uri.parse(url)
-                val logo="${parse.scheme}://${parse.host}/favicon.ico"
-                val save = BookmarkBean(title, url, logo, time = System.currentTimeMillis()).save()
-                context.toast(if (save) "Successfully added" else "Add failed")
+                val find = LitePal.select("*")
+                    .where("webUrl = ?", url)
+                    .order("time desc")
+                    .limit(200)
+                    .offset(0)
+                    .find(BookmarkBean::class.java)
+                if (find?.isEmpty() == true){
+                    val parse = Uri.parse(url)
+                    val logo="${parse.scheme}://${parse.host}/favicon.ico"
+                    val save = BookmarkBean(title, url, logo, time = System.currentTimeMillis()).save()
+                    context.toast(if (save) "Successfully added" else "Add failed")
+                }
             }catch (e:Exception){
 
             }
@@ -96,6 +114,10 @@ class LitePalUtil {
                 .limit(20)
                 .offset(currentNum)
                 .find(BookmarkBean::class.java)
+        }
+
+        fun deleteBookmark(bean: BookmarkBean): Int {
+            return LitePal.deleteAll(BookmarkBean::class.java, "time = ?", "${bean.time}")
         }
 
         fun saveRecent(title:String,url:String){

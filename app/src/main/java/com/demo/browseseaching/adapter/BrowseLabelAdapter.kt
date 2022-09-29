@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.demo.browseseaching.R
 import com.demo.browseseaching.manager.BrowseLabelManager
 import com.demo.browseseaching.util.printLog
+import com.demo.browseseaching.view.BrowseContentView
 import com.demo.browseseaching.view.BrowseHomeView
 import com.demo.browseseaching.view.BrowseWebView
 import kotlinx.android.synthetic.main.all_label_item.view.*
 
 class BrowseLabelAdapter(
     private val context: Context,
+    private val list:ArrayList<BrowseContentView>,
     private val click:(index:Int)->Unit,
     private val deleteLabel:(index:Int)->Unit,
 ): RecyclerView.Adapter<BrowseLabelAdapter.MyView>(){
@@ -37,7 +39,7 @@ class BrowseLabelAdapter(
 
     override fun onBindViewHolder(holder: MyView, position: Int) {
         with(holder.itemView){
-            val browseContentView = BrowseLabelManager.getLabelList()[position]
+            val browseContentView = list[position]
             val showView = browseContentView.getShowView()
             if (showView is BrowseHomeView){
                 val homeBitmap = BrowseLabelManager.homeBitmap
@@ -54,5 +56,5 @@ class BrowseLabelAdapter(
         }
     }
 
-    override fun getItemCount(): Int = BrowseLabelManager.getLabelList().size
+    override fun getItemCount(): Int = list.size
 }
