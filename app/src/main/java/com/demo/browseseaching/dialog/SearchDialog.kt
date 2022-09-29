@@ -52,6 +52,7 @@ class SearchDialog:BaseDialogFragment(R.layout.activity_search) {
         Handler().postDelayed({
             val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS)
+            et_search.requestFocus()
         },1000)
     }
 }

@@ -33,7 +33,13 @@ object BrowseLabelManager {
 
     fun getHomeBitmap(){
         if (labelList.size>=0){
-            homeBitmap= labelList.first().getHomeBitmap()
+//            homeBitmap= labelList.first().getHomeBitmap()
+            for (browseContentView in labelList) {
+                if(browseContentView.showingHome()){
+                    homeBitmap=browseContentView.getHomeBitmap()
+                    return
+                }
+            }
         }
     }
 

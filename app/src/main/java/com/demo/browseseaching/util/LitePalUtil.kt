@@ -14,9 +14,16 @@ class LitePalUtil {
 
         fun saveHistoryUrl(title:String,url:String){
             try {
-                val parse = Uri.parse(url)
-                val logo="${parse.scheme}://${parse.host}/favicon.ico"
-                HistoryBean(title, url, logo, time = System.currentTimeMillis()).save()
+                val find = LitePal.select("*")
+                    .where("webUrl = ?", url)
+                    .limit(200)
+                    .offset(0)
+                    .find(HistoryBean::class.java)
+                if (find?.isEmpty() == true){
+                    val parse = Uri.parse(url)
+                    val logo="${parse.scheme}://${parse.host}/favicon.ico"
+                    HistoryBean(title, url, logo, time = System.currentTimeMillis()).save()
+                }
             }catch (e:Exception){
 
             }

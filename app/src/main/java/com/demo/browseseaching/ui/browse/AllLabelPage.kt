@@ -53,13 +53,13 @@ class AllLabelPage: BasePage(R.layout.activity_all_label) {
             index,
             clickLabelView,
             result = {
-                BrowseLabelManager.homeBitmap=null
                 if (it){
                     finish()
                 }
             },
             deleteFinish = {
                 labelList.removeAt(index)
+                BrowseLabelManager.getHomeBitmap()
                 labelAdapter.notifyDataSetChanged()
             }
         )

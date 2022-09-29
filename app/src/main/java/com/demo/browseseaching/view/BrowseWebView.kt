@@ -71,7 +71,6 @@ class BrowseWebView @JvmOverloads constructor(
     }
 
     fun loadUrl(url:String){
-        printLog(url)
         firstLoad=true
         this.webUrl=url
         webView.loadUrl(url)

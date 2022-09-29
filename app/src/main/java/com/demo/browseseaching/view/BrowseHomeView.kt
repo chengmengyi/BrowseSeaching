@@ -111,12 +111,4 @@ class BrowseHomeView @JvmOverloads constructor(
             adapter=funcAdapter
         }
     }
-
-//    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-//        val count = childCount
-//        for (i in 0 until count) {
-//            getChildAt(i).measure(widthMeasureSpec, heightMeasureSpec)
-//        }
-//    }
 }

@@ -244,7 +244,6 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
         super.onDestroy()
         val currentLabelView = BrowseLabelManager.getCurrentLabelView()
         currentLabelView.onDestroy()
-        BrowseLabelManager.homeBitmap=null
     }
 
 }

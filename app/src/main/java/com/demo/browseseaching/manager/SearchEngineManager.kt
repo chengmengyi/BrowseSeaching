@@ -18,7 +18,7 @@ object SearchEngineManager {
 
         index = MMKVUtil.read(MMKVKey.SEARCH_ENGINE)
         if (index==-1){
-            index=3
+            index=1
         }
     }
 
