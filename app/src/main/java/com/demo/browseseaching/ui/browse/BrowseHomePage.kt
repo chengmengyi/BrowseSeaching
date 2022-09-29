@@ -222,6 +222,7 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
             }
             EventbusCode.ADD_LABEL->{
                 BrowseLabelManager.addLabel(this,this,this,incognito = bean.boolean){
+                    updateBottomBtnState(updateBack = true, updateMore = true, updateForward = false)
                     addView()
                 }
             }
