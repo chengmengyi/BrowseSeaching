@@ -19,34 +19,31 @@ object OkgoUtil {
 
             override fun onError(response: Response<String>?) {
                 super.onError(response)
-                printLog("=onError===${response?.message()}")
+//                printLog("=onError===${response?.message()}")
             }
         })
     }
 
-
-    const val s=""" {"strand": {"drip": "", "kalmuk": "4f5dFd48bd166eEc0AaCB1E4ed5545eBB", "plantain": "", "drub": "", "freight": "zh_CN", "punky": null, "linen": "com.example.my", "syndic": "", "uphill": "1.2.4", "mortem": null}, "septic": {"deferred": "p30", "minor": "auijiajfoa89", "sunday": "", "tree": "opple", "lapelled": "gp", "beast": "1.2.3.4", "sit": "1.3.1", "wispy": "myroom"}, "elution": {"megabyte": "26e763eb5d86A14CEdedCBA810a1f7Cc", "godson": "temper", "bode": "", "erratic": 0}, "tacky": {"blab": "43003", "chowder": 1664329264129, "opacity": "wifi", "bathurst": "10.1", "diffract": ""}, "lome": "ADaBafdF1CD", "ovulate": "utm_source=google-play&utm_medium=organic", "rang": "1.1.1", "eurydice": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36", "ar": "schwab", "rote": 0, "warhead": 0, "thoracic": 0, "poetic": 0, "aberdeen": 0, "argue": 0, "bainite": false, "dud": "chelate"}"""
-
     fun uploadInstall(jsonObject: JSONObject,install:Boolean){
         val path = "$url?kalmuk=${UUID.randomUUID()}&chowder=${System.currentTimeMillis()}"
-        printLog(path)
+//        printLog(path)
+//        printLog(jsonObject.toString())
         OkGo.post<String>(path)
             .retryCount(2)
             .headers("content-type","application/json")
             .headers("mortem", Locale.getDefault().country)
-//            .upJson(jsonObject)
-            .upJson(s)
+            .upJson(jsonObject)
             .execute(object :StringCallback(){
                 override fun onSuccess(response: Response<String>?) {
-                    if (install){
+                    if (install&&jsonObject.optString("ovulate").isNotEmpty()){
                         PointUtil.saveInstallTag()
                     }
-                    Log.e("qwer","=onSuccess==${response?.code()}===${response?.message()}===${response?.body()}==")
+//                    Log.e("qwer","=onSuccess==${response?.code()}===${response?.message()}===${response?.body()}==")
                 }
 
                 override fun onError(response: Response<String>?) {
                     super.onError(response)
-                    Log.e("qwer","=onError==${response?.code()}===${response?.message()}=")
+//                    Log.e("qwer","=onError==${response?.code()}===${response?.message()}==${response?.body()}==")
                 }
             })
     }

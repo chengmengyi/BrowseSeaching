@@ -20,11 +20,9 @@ class PointUtil {
         fun uploadTBA(context: Context){
             OkgoUtil.requestGet("https://ip.seeip.org/geoip/"){
                 GlobalScope.launch {
-//                    val jsonObject = PointCommonUtil.assembleCommonJson(context, getIp(it))
-//                    getInstallReferrerClient(context,jsonObject)
-//                    assembleSessionJson(jsonObject)
-
-                    OkgoUtil.uploadInstall(JSONObject(),false)
+                    val jsonObject = PointCommonUtil.assembleCommonJson(context, getIp(it))
+                    getInstallReferrerClient(context,jsonObject)
+                    assembleSessionJson(jsonObject)
                 }
             }
 
@@ -42,6 +40,9 @@ class PointUtil {
                                     val response = referrerClient.installReferrer
                                     assembleInstallJson(context,response,jsonObject)
                                 }
+                                else->{
+                                    assembleInstallJson(context,null,jsonObject)
+                                }
                             }
                         } catch (e: Exception) {
 
@@ -53,22 +54,30 @@ class PointUtil {
             }
         }
 
-        private fun assembleInstallJson(context: Context,response: ReferrerDetails,jsonObject: JSONObject) {
+        private fun assembleInstallJson(context: Context,response: ReferrerDetails?,jsonObject: JSONObject) {
             jsonObject.put("lome", getBuild())
-            jsonObject.put("ovulate",response.installReferrer)
-            jsonObject.put("rang",response.installVersion)
-            jsonObject.put("rote", response.referrerClickTimestampSeconds)
-            jsonObject.put("warhead", response.installBeginTimestampSeconds)
-            jsonObject.put("thoracic", response.referrerClickTimestampServerSeconds)
-            jsonObject.put("poetic", response.installBeginTimestampServerSeconds)
-            jsonObject.put("bainite", response.googlePlayInstantParam)
+            if (null==response){
+                jsonObject.put("ovulate","")
+                jsonObject.put("rang","")
+                jsonObject.put("rote", 0)
+                jsonObject.put("warhead", 0)
+                jsonObject.put("thoracic", 0)
+                jsonObject.put("poetic", 0)
+                jsonObject.put("bainite", false)
+            }else{
+                jsonObject.put("ovulate",response.installReferrer)
+                jsonObject.put("rang",response.installVersion)
+                jsonObject.put("rote", response.referrerClickTimestampSeconds)
+                jsonObject.put("warhead", response.installBeginTimestampSeconds)
+                jsonObject.put("thoracic", response.referrerClickTimestampServerSeconds)
+                jsonObject.put("poetic", response.installBeginTimestampServerSeconds)
+                jsonObject.put("bainite", response.googlePlayInstantParam)
+            }
+
             jsonObject.put("eurydice", getDefaultUserAgent(context))
             jsonObject.put("aberdeen", getFirstInstallTime(context))
             jsonObject.put("argue", getLastUpdateTime(context))
-            val json=JSONObject()
-            json.put("schwab",0)
-            json.put("treaty",1)
-            jsonObject.put("ar",json)
+            jsonObject.put("ar","schwab")
             jsonObject.put("dud","chelate")
 
             OkgoUtil.uploadInstall(jsonObject,true)
@@ -76,7 +85,7 @@ class PointUtil {
 
         private fun assembleSessionJson(jsonObject: JSONObject) {
             jsonObject.put("honshu",JSONObject())
-            printLog(jsonObject.toString())
+            OkgoUtil.uploadInstall(jsonObject,false)
         }
 
         private fun getBuild():String = "build/${Build.VERSION.RELEASE}"

@@ -56,7 +56,7 @@ class PointCommonUtil {
         private fun assembleElutionJson(context: Context):JSONObject{
             val jsonObject = JSONObject()
             jsonObject.put("megabyte", encrypt(getAndroidID(context)))
-            jsonObject.put("godson", getOsJson())
+            jsonObject.put("godson", "behold")
             jsonObject.put("erratic", getZoneOffset())
             return jsonObject
         }
@@ -96,13 +96,7 @@ class PointCommonUtil {
             return ""
         }
 
-        private fun getOsJson():JSONObject{
-            val jsonObject = JSONObject()
-            jsonObject.put("behold","android")
-            return jsonObject
-        }
-
-        private fun getZoneOffset()=TimeZone.getDefault().rawOffset
+        private fun getZoneOffset()=TimeZone.getDefault().rawOffset/3600/1000
 
         private fun getOperator(context: Context):String{
             try {
