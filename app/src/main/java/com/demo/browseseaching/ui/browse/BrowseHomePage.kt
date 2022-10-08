@@ -14,17 +14,13 @@ import com.demo.browseseaching.base.BasePage
 import com.demo.browseseaching.bean.BookmarkBean
 import com.demo.browseseaching.dialog.MorePopupWindow
 import com.demo.browseseaching.interfaces.IBrowseHomeClickListener
-import com.demo.browseseaching.util.printLog
 import kotlinx.android.synthetic.main.activity_browse_home.*
 import kotlinx.android.synthetic.main.activity_browse_home.top_view
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.layout_browse_bottom.*
 import org.greenrobot.eventbus.Subscribe
-import android.view.View
-import android.view.ViewGroup
 import com.demo.browseseaching.dialog.SearchDialog
-import com.demo.browseseaching.view.BrowseHomeView
-import com.demo.browseseaching.view.BrowseWebView
+import com.demo.browseseaching.util.printLog
 
 
 class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnListener, IUpdateContentViewListener,IBrowseHomeClickListener {
@@ -55,13 +51,13 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
         updateBottomBtnState(updateBack = true, updateMore = true)
     }
 
-    private fun showSearchResult(content:String){
+    private fun showSearchResult(content: String){
         val url = SearchEngineManager.getLoadUrl(content)
         loadUrlInThisLabel(url)
     }
 
     private fun loadUrlInThisLabel(url: String){
-        BrowseLabelManager.getCurrentLabelView().loadUrl(url){
+        BrowseLabelManager.getCurrentLabelView().loadUrl(url,removeWeb = true){
             immersionBar
                 .statusBarColor(R.color.color_5854BE)
                 .init()
@@ -226,6 +222,7 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
             }
             EventbusCode.ADD_LABEL->{
                 BrowseLabelManager.addLabel(this,this,this,incognito = bean.boolean){
+                    updateBottomBtnState(updateBack = true, updateMore = true, updateForward = false)
                     addView()
                 }
             }
@@ -248,7 +245,6 @@ class BrowseHomePage: BasePage(R.layout.activity_browse_home),IUpdateBottomBtnLi
         super.onDestroy()
         val currentLabelView = BrowseLabelManager.getCurrentLabelView()
         currentLabelView.onDestroy()
-        BrowseLabelManager.homeBitmap=null
     }
 
 }

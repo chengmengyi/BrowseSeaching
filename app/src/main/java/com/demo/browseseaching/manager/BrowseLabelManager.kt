@@ -32,8 +32,14 @@ object BrowseLabelManager {
     }
 
     fun getHomeBitmap(){
-        if (null==homeBitmap&& labelList.size>=0){
-            homeBitmap= labelList.first().getHomeBitmap()
+        if (labelList.size>=0){
+//            homeBitmap= labelList.first().getHomeBitmap()
+            for (browseContentView in labelList) {
+                if(browseContentView.showingHome()){
+                    homeBitmap=browseContentView.getHomeBitmap()
+                    return
+                }
+            }
         }
     }
 
@@ -54,7 +60,7 @@ object BrowseLabelManager {
 
     fun getCurrentLabelView()=labelList[currentIndex]
 
-    fun removeContentView(index: Int, clickLabelView: BrowseContentView,result: (finish:Boolean) -> Unit){
+    fun removeContentView(index: Int, clickLabelView: BrowseContentView,result: (finish:Boolean) -> Unit,deleteFinish:()->Unit){
         if (index < labelList.size){
             val currentLabelView = getCurrentLabelView()
             labelList.removeAt(index)
@@ -65,6 +71,7 @@ object BrowseLabelManager {
                 iUpdateContentViewListener?.deleteContentView()
                 result.invoke(true)
             }
+            deleteFinish.invoke()
         }
     }
 

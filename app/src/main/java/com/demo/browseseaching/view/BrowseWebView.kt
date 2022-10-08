@@ -4,14 +4,18 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.os.Build
 import android.util.AttributeSet
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.demo.browseseaching.R
@@ -19,7 +23,9 @@ import com.demo.browseseaching.eventbus.EventbusBean
 import com.demo.browseseaching.eventbus.EventbusCode
 import com.demo.browseseaching.interfaces.IUpdateBottomBtnListener
 import com.demo.browseseaching.util.LitePalUtil
+import com.demo.browseseaching.util.printLog
 import com.demo.browseseaching.util.show
+import kotlinx.android.synthetic.main.activity_search.*
 import java.lang.Exception
 
 class BrowseWebView @JvmOverloads constructor(
@@ -29,7 +35,7 @@ class BrowseWebView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
 ) : LinearLayout(ctx, attrs){
 
-    private var tvTitle:AppCompatTextView?=null
+    private var tvTitle:AppCompatEditText?=null
     private var webProgress: ProgressBar?=null
     private lateinit var webView:WebView
 
@@ -41,7 +47,6 @@ class BrowseWebView @JvmOverloads constructor(
     init {
         val view = LayoutInflater.from(ctx).inflate(R.layout.browse_web_view, this)
         webView=view.findViewById(R.id.web_view)
-        tvTitle=view.findViewById(R.id.tv_url)
         webProgress=view.findViewById(R.id.web_progress)
         view.findViewById<AppCompatImageView>(R.id.iv_refresh).setOnClickListener {
             reLoadUrl()
@@ -50,6 +55,17 @@ class BrowseWebView @JvmOverloads constructor(
         view.findViewById<AppCompatImageView>(R.id.iv_web_home).setOnClickListener {
             EventbusBean(EventbusCode.LOAD_HOME).send()
         }
+
+        tvTitle=view.findViewById(R.id.tv_url)
+        tvTitle?.setOnEditorActionListener(object : TextView.OnEditorActionListener{
+            override fun onEditorAction(textView: TextView?, actionId: Int, keyEvent: KeyEvent?): Boolean {
+                if ((actionId == EditorInfo.IME_ACTION_UNSPECIFIED || actionId == EditorInfo.IME_ACTION_SEARCH) && keyEvent != null) {
+                    EventbusBean(EventbusCode.SEARCH_URL, str = tvTitle?.text.toString()).send()
+                    return true
+                }
+                return false
+            }
+        })
 
         setWebView()
     }
@@ -127,8 +143,7 @@ class BrowseWebView @JvmOverloads constructor(
             }
             webViewClient=object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-//                    webView.loadUrl(url?:"")
-
+                    webView.loadUrl(url?:"")
                     return true
                 }
 
@@ -157,7 +172,7 @@ class BrowseWebView @JvmOverloads constructor(
 
                 override fun onReceivedTitle(view: WebView?, title: String?) {
                     super.onReceivedTitle(view, title)
-                    tvTitle?.text=title?:""
+                    tvTitle?.setText(title?:"")
                 }
 
                 override fun onReceivedIcon(view: WebView?, icon: Bitmap?) {

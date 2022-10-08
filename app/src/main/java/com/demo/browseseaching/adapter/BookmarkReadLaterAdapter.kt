@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -11,7 +12,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.demo.browseseaching.R
 import com.demo.browseseaching.bean.BookmarkBean
 import com.demo.browseseaching.bean.ReadLaterBean
-import kotlinx.android.synthetic.main.layout_history_content.view.*
+import com.demo.browseseaching.util.LitePalUtil
+import com.demo.browseseaching.view.slidelayout.SlideHelper
+import com.demo.browseseaching.view.slidelayout.SlideLayout
+import kotlinx.android.synthetic.main.layout_bookmark_item.view.*
 
 class BookmarkReadLaterAdapter(
     private val ctx: Context,
@@ -20,10 +24,18 @@ class BookmarkReadLaterAdapter(
     private val readList:ArrayList<ReadLaterBean>?=null,
     private val clickItem:(bean:BookmarkBean)->Unit
 ):RecyclerView.Adapter<BookmarkReadLaterAdapter.MyView>() {
+    private val mSlideHelper: SlideHelper = SlideHelper()
 
     inner class MyView(view:View):RecyclerView.ViewHolder(view){
+        private val slideLayout=view.findViewById<SlideLayout>(R.id.slide_layout)
+        private val tvDelete=view.findViewById<AppCompatTextView>(R.id.tv_delete)
         init {
             view.setOnClickListener {
+                if (slideLayout.isOpen){
+                    slideLayout.close()
+                    return@setOnClickListener
+                }
+
                 if (isBook){
                     clickItem.invoke(bookList!![layoutPosition])
                 }else{
@@ -38,7 +50,27 @@ class BookmarkReadLaterAdapter(
                     )
                 }
             }
+
+            tvDelete.setOnClickListener {
+                slideLayout.close()
+                delete(layoutPosition)
+            }
         }
+    }
+
+    private fun delete(index:Int){
+        if (isBook){
+            val deleteBookmark = LitePalUtil.deleteBookmark(bookList!![index])
+            if (deleteBookmark==1){
+                bookList.removeAt(index)
+            }
+        }else{
+            val deleteReadLater = LitePalUtil.deleteReadLater(readList!![index])
+            if (deleteReadLater==1){
+                readList.removeAt(index)
+            }
+        }
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyView =
@@ -62,6 +94,18 @@ class BookmarkReadLaterAdapter(
                 .load(bean.iconUrl)
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(10)))
                 .into(iv_cover)
+            slide_layout.setOpen(bean.isOpen,false)
+            slide_layout.setOnStateChangeListener(object : SlideLayout.OnStateChangeListener(){
+                override fun onInterceptTouchEvent(layout: SlideLayout?): Boolean {
+                    val result = mSlideHelper.closeAll(layout)
+                    return false
+                }
+                override fun onStateChanged(layout: SlideLayout?, open: Boolean) {
+                    bean.isOpen=open
+                    mSlideHelper.onStateChanged(layout, open)
+                }
+            })
+
         }
     }
 
