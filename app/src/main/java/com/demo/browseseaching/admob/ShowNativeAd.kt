@@ -52,6 +52,7 @@ class ShowNativeAd (private val basePage: BasePage, private val type:String){
     private fun startShowNativeAd(nativeAd: NativeAd){
         when(type){
             AdType.AD_TYPE_RECENT,AdType.AD_TYPE_HISTORY->showBookmarkNativeAd(nativeAd)
+            AdType.AD_TYPE_CONNECT_RESULT,AdType.AD_TYPE_CONNECT_HOME->showNativeAd(nativeAd)
         }
     }
 
@@ -93,8 +94,9 @@ class ShowNativeAd (private val basePage: BasePage, private val type:String){
         viewNativeAd.setNativeAd(nativeAd)
         ReadFirebase.addAdShowNum()
         basePage.findViewById<AppCompatImageView>(R.id.iv_default).show(false)
-//
-//        showNativeAdCompleted()
+
+        LoadAdManager.clearAdResByType(type)
+        LoadAdManager.getAdResData(type)
     }
 
 
@@ -116,8 +118,10 @@ class ShowNativeAd (private val basePage: BasePage, private val type:String){
         viewNativeAd.setNativeAd(nativeAd)
         ReadFirebase.addAdShowNum()
         basePage.findViewById<AppCompatImageView>(R.id.iv_default).show(false)
+        viewNativeAd.show(true)
 
-//        showNativeAdCompleted()
+        LoadAdManager.clearAdResByType(type)
+        LoadAdManager.getAdResData(type)
     }
 
     fun stopCheck(){

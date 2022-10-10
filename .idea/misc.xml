@@ -8,41 +8,60 @@
         <entry key="app/src/main/res/drawable/bg_161458_24dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_4de29aff_8dp.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/bg_5451b6_24dp.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable/bg_5854be_8dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_5c59b8_12dp.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable/bg_5c59b8_8dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_6400ff_8dp.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/bg_99ffffff_24dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_99ffffff_5dp.xml" value="0.29384615384615387" />
-        <entry key="app/src/main/res/drawable/bg_f6840f_8dp.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable/bg_ccffffff_16dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_fff_5dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_ffffff_12dp.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/bg_ffffff_16dp.xml" value="0.2916666666666667" />
+        <entry key="app/src/main/res/drawable/bg_ffffff_28_28_0_0.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable/bg_ffffff_30dp.xml" value="0.29074074074074074" />
         <entry key="app/src/main/res/drawable/bg_ffffff_8dp.xml" value="0.2916666666666667" />
+        <entry key="app/src/main/res/drawable/bg_native_ad.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable/bg_result_ad.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable/choose_server_selector.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable/connect_result_time_color_selector.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable/connect_time_color_selector.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/dotted_line.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/launch_progress.xml" value="0.2984375" />
+        <entry key="app/src/main/res/drawable/result_time_color_selector.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/search_engines_selcetor.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/search_engines_seletor.xml" value="0.2916666666666667" />
+        <entry key="app/src/main/res/drawable/server_item_color_selector.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable/server_item_selector.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/web_progress.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/layout/activity_all_label.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/activity_bookmark_readlater.xml" value="0.18795289855072464" />
         <entry key="app/src/main/res/layout/activity_browse_home.xml" value="0.20697463768115942" />
+        <entry key="app/src/main/res/layout/activity_choose_server.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_connect_server.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_history.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2318840579710145" />
         <entry key="app/src/main/res/layout/activity_policy.xml" value="0.21195652173913043" />
         <entry key="app/src/main/res/layout/activity_recent.xml" value="0.2033514492753623" />
+        <entry key="app/src/main/res/layout/activity_result.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/activity_search_engines.xml" value="0.18795289855072464" />
+        <entry key="app/src/main/res/layout/activity_serveer.xml" value="0.20516304347826086" />
+        <entry key="app/src/main/res/layout/activity_server.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.18795289855072464" />
         <entry key="app/src/main/res/layout/all_label_it.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/all_label_item.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/browse_home_view.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/browse_web_view.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/layout_bookmark_item.xml" value="0.18795289855072464" />
-        <entry key="app/src/main/res/layout/layout_bookmark_native_ad.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/layout_bookmark_native_ad.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/layout_browse_bottom.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/layout_browse_bottom_item.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/layout_browse_home.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/layout_browse_home_func_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/layout_connect_home_ad.xml" value="0.20516304347826086" />
+        <entry key="app/src/main/res/layout/layout_connect_native_ad.xml" value="0.20923913043478262" />
         <entry key="app/src/main/res/layout/layout_history_content.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/layout_history_title.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/layout_long_click_func_item.xml" value="0.18795289855072464" />
@@ -52,7 +71,10 @@
         <entry key="app/src/main/res/layout/layout_native_ad.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout_recent_item.xml" value="0.2033514492753623" />
         <entry key="app/src/main/res/layout/layout_search_engines_item.xml" value="0.18795289855072464" />
+        <entry key="app/src/main/res/layout/layout_server_item,.xml" value="0.21331521739130435" />
+        <entry key="app/src/main/res/layout/layout_server_item.xml" value="0.165" />
         <entry key="app/src/main/res/layout/layout_set_item.xml" value="0.18795289855072464" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.29384615384615387" />
       </map>
     </option>
   </component>

@@ -1,8 +1,29 @@
 package com.demo.browseseaching.config
 
+import com.demo.browseseaching.bean.ServerBean
+
 object Config {
     const val email=""
     const val url=""
+
+    val localServerList= arrayListOf(
+        ServerBean(
+            host = "100.223.52.0",
+            port = 100,
+            pwd = "123456",
+            country = "Japan",
+            city = "Tokyo",
+            method = "chacha20-ietf-poly1305",
+        ),
+        ServerBean(
+            host = "100.223.52.78",
+            port = 100,
+            pwd = "123456",
+            country = "TEST2",
+            city = "TEST2_CITY",
+            method = "chacha20-ietf-poly1305",
+        ),
+    )
 
     const val BROWSE_AD_CONF="""{
                 "flower_click":15,
@@ -108,7 +129,7 @@ object Config {
             "flower_sort": 3
         }
     ],
-    "flower_home": [
+    "flower_connect_home": [
         {
             "flower_source": "admob",
             "flower_id": "ca-app-pub-3940256099942544/2247696110A",
@@ -128,7 +149,7 @@ object Config {
             "flower_sort": 3
         }
     ],
-    "flower_result": [
+    "flower_connect_result": [
         {
             "flower_source": "admob",
             "flower_id": "ca-app-pub-3940256099942544/2247696110A",

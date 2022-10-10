@@ -47,4 +47,25 @@
             android:src="@drawable/title"
             android:layout_marginLeft="12dp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llc_server"
+        android:layout_width="match_parent"
+        android:layout_height="86dp"
+        android:paddingLeft="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_99ffffff_5dp"
+        app:layout_constraintTop_toBottomOf="@id/llc_browse">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:src="@drawable/home_server"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:src="@drawable/home_server_text"
+            android:layout_marginLeft="12dp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>

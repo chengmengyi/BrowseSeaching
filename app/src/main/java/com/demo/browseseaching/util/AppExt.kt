@@ -5,10 +5,12 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.demo.browseseaching.R
 import com.demo.browseseaching.config.Config
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -17,6 +19,10 @@ import java.util.*
 
 fun printLog(string: String){
     Log.e("qwer",string)
+}
+
+fun getServerLogo(country:String)=when(country){
+    else-> R.drawable.fast
 }
 
 fun View.show(show:Boolean){
@@ -88,4 +94,20 @@ fun createNumKey(type:String): String {
     } catch (e: Exception) {
         type
     }
+}
+
+
+fun Context.getNetStatus(): Int {
+    val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val activeNetworkInfo = connectivityManager.activeNetworkInfo
+    if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
+        if (activeNetworkInfo.type == ConnectivityManager.TYPE_WIFI) {
+            return 2
+        } else if (activeNetworkInfo.type == ConnectivityManager.TYPE_MOBILE) {
+            return 0
+        }
+    } else {
+        return 1
+    }
+    return 1
 }

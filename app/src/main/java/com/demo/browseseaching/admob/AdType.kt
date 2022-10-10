@@ -8,5 +8,12 @@ class AdType {
         const val AD_TYPE_LATER="flower_later"
         const val AD_TYPE_RECENT="flower_recent"
         const val AD_TYPE_HISTORY="flower_history"
+
+
+        const val AD_TYPE_CONNECT="flower_connect"
+        const val AD_TYPE_CONNECT_HOME="flower_connect_home"
+        const val AD_TYPE_CONNECT_RESULT="flower_connect_result"
+
+
     }
 }
