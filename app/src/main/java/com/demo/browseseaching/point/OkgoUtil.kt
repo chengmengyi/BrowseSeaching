@@ -26,8 +26,8 @@ object OkgoUtil {
 
     fun uploadInstall(jsonObject: JSONObject,install:Boolean){
         val path = "$url?kalmuk=${UUID.randomUUID()}&chowder=${System.currentTimeMillis()}"
-//        printLog(path)
-//        printLog(jsonObject.toString())
+        Log.e("qweraaa",path)
+        Log.e("qweraaa",jsonObject.toString())
         OkGo.post<String>(path)
             .retryCount(2)
             .headers("content-type","application/json")
@@ -38,12 +38,12 @@ object OkgoUtil {
                     if (install&&jsonObject.optString("ovulate").isNotEmpty()){
                         PointUtil.saveInstallTag()
                     }
-//                    Log.e("qwer","=onSuccess==${response?.code()}===${response?.message()}===${response?.body()}==")
+                    Log.e("qweraaa","=onSuccess==${response?.code()}===${response?.message()}===${response?.body()}==")
                 }
 
                 override fun onError(response: Response<String>?) {
                     super.onError(response)
-//                    Log.e("qwer","=onError==${response?.code()}===${response?.message()}==${response?.body()}==")
+                    Log.e("qweraaa","=onError==${response?.code()}===${response?.message()}==${response?.body()}==")
                 }
             })
     }

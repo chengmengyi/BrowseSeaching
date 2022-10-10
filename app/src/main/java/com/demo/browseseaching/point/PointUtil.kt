@@ -22,7 +22,7 @@ class PointUtil {
                 GlobalScope.launch {
                     val jsonObject = PointCommonUtil.assembleCommonJson(context, getIp(it))
                     getInstallReferrerClient(context,jsonObject)
-                    assembleSessionJson(jsonObject)
+                    assembleSessionJson(context,getIp(it))
                 }
             }
 
@@ -83,7 +83,8 @@ class PointUtil {
             OkgoUtil.uploadInstall(jsonObject,true)
         }
 
-        private fun assembleSessionJson(jsonObject: JSONObject) {
+        private fun assembleSessionJson(context:Context,ip:String) {
+            val jsonObject = PointCommonUtil.assembleCommonJson(context, ip)
             jsonObject.put("honshu",JSONObject())
             OkgoUtil.uploadInstall(jsonObject,false)
         }
