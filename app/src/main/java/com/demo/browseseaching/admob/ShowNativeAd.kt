@@ -93,8 +93,7 @@ class ShowNativeAd (private val basePage: BasePage, private val type:String){
         viewNativeAd.setNativeAd(nativeAd)
         ReadFirebase.addAdShowNum()
         basePage.findViewById<AppCompatImageView>(R.id.iv_default).show(false)
-//
-//        showNativeAdCompleted()
+
     }
 
 
@@ -117,8 +116,9 @@ class ShowNativeAd (private val basePage: BasePage, private val type:String){
         ReadFirebase.addAdShowNum()
         basePage.findViewById<AppCompatImageView>(R.id.iv_default).show(false)
         viewNativeAd.show(true)
+
+        LoadAdManager.clearAdResByType(type)
         LoadAdManager.check(type)
-//        showNativeAdCompleted()
     }
 
     fun stopCheck(){
