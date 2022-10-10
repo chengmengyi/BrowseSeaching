@@ -1,7 +1,9 @@
 package com.demo.browseseaching.view
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.util.AttributeSet
 import android.view.KeyEvent
@@ -142,9 +144,16 @@ class BrowseWebView @JvmOverloads constructor(
                 allowUniversalAccessFromFileURLs = false
             }
             webViewClient=object : WebViewClient() {
-                override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                    webView.loadUrl(url?:"")
-                    return true
+                override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                    if (url.startsWith("http:")||url.startsWith("https:")||url.startsWith("ftp")){
+                        view.loadUrl(url)
+                        return true
+                    }
+                    else{
+                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                        return true
+                    }
+                    return false
                 }
 
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
