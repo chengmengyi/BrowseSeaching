@@ -15,7 +15,6 @@ import org.json.JSONObject
 
 class PointUtil {
     companion object{
-        private const val INSTALL="install"
 
         fun uploadTBA(context: Context){
             OkgoUtil.requestGet("https://ip.seeip.org/geoip/"){
@@ -30,7 +29,7 @@ class PointUtil {
         }
 
         private fun getInstallReferrerClient(context: Context, jsonObject: JSONObject){
-            if (getInstallTag()<=0){
+            if (!uploadHasReferrerTag() || !uploadNoReferrerTag()){
                 val referrerClient = InstallReferrerClient.newBuilder(mMyApp).build()
                 referrerClient.startConnection(object : InstallReferrerStateListener {
                     override fun onInstallReferrerSetupFinished(responseCode: Int) {
@@ -56,6 +55,12 @@ class PointUtil {
         }
 
         private fun assembleInstallJson(context: Context,response: ReferrerDetails?,jsonObject: JSONObject) {
+            if (null==response&& uploadNoReferrerTag()){
+                return
+            }
+            if (null!=response&& uploadHasReferrerTag()){
+                return
+            }
             jsonObject.put("lome", getBuild())
             if (null==response){
                 jsonObject.put("ovulate","")
@@ -114,11 +119,17 @@ class PointUtil {
             return System.currentTimeMillis()
         }
 
-        private fun getInstallTag()=MMKVUtil.read(INSTALL)
-
-        fun saveInstallTag(){
-            MMKVUtil.writeInt(INSTALL,1)
+        fun saveNoReferrerTag(){
+            MMKVUtil.writeInt("noReferrer",1)
         }
+
+        private fun uploadNoReferrerTag()=MMKVUtil.read("noReferrer")==1
+
+        fun saveHasReferrerTag(){
+            MMKVUtil.writeInt("hasReferrer",1)
+        }
+
+        private fun uploadHasReferrerTag()=MMKVUtil.read("hasReferrer")==1
 
         private fun getIp(json:String):String{
             try {
