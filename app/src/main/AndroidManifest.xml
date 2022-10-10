@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.demo.browseseaching">
+    package="com.flowerbrowse.unlimited.search.websites.photos">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:name=".MyApp"
+        android:name="com.flowerbrowse.unlimited.search.websites.photos.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +13,7 @@
         android:theme="@style/Theme.BrowseSeaching"
         android:networkSecurityConfig="@xml/network_security_config">
         <activity
-            android:name=".ui.LaunchPage"
+            android:name="com.flowerbrowse.unlimited.search.websites.photos.ui.LaunchPage"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -22,25 +22,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.HomePage"
+        <activity android:name="com.flowerbrowse.unlimited.search.websites.photos.ui.HomePage"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
-        <activity android:name=".ui.browse.BrowseHomePage"
+        <activity android:name="com.flowerbrowse.unlimited.search.websites.photos.ui.browse.BrowseHomePage"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.browse.AllLabelPage"
+        <activity android:name="com.flowerbrowse.unlimited.search.websites.photos.ui.browse.AllLabelPage"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.browse.HistoryPage"
+        <activity android:name="com.flowerbrowse.unlimited.search.websites.photos.ui.browse.HistoryPage"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.browse.BookmarkReadLaterPage"
+        <activity android:name="com.flowerbrowse.unlimited.search.websites.photos.ui.browse.BookmarkReadLaterPage"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.SettingPage"
+        <activity android:name="com.flowerbrowse.unlimited.search.websites.photos.ui.SettingPage"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.browse.SearchEnginesPage"
+        <activity android:name="com.flowerbrowse.unlimited.search.websites.photos.ui.browse.SearchEnginesPage"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.PolicyPage"
+        <activity android:name="com.flowerbrowse.unlimited.search.websites.photos.ui.PolicyPage"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.browse.RecentPage"
+        <activity android:name="com.flowerbrowse.unlimited.search.websites.photos.ui.browse.RecentPage"
             android:screenOrientation="portrait"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
     </application>
 
 </manifest>

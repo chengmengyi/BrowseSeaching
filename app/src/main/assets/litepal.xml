@@ -7,10 +7,10 @@
     <!--    <storage value="LSX/Database" />-->
     <!--数据库中的表,一个类一个表 -->
     <list>
-        <mapping class="com.demo.browseseaching.bean.HistoryBean"/>
-        <mapping class="com.demo.browseseaching.bean.ReadLaterBean"/>
-        <mapping class="com.demo.browseseaching.bean.BookmarkBean"/>
-        <mapping class="com.demo.browseseaching.bean.RecentBean"/>
+        <mapping class="com.flowerbrowse.unlimited.search.websites.photos.bean.HistoryBean"/>
+        <mapping class="com.flowerbrowse.unlimited.search.websites.photos.bean.ReadLaterBean"/>
+        <mapping class="com.flowerbrowse.unlimited.search.websites.photos.bean.BookmarkBean"/>
+        <mapping class="com.flowerbrowse.unlimited.search.websites.photos.bean.RecentBean"/>
     </list>
 
 </litepal>

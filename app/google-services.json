@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "486525628934",
+    "project_id": "flower-browse",
+    "storage_bucket": "flower-browse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486525628934:android:e65d6789910973ebbbc987",
+        "android_client_info": {
+          "package_name": "com.flowerbrowse.unlimited.search.websites.photos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486525628934-n5mio7vgfkevfmkrdae0pqdpsm4fn59u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9iC45HWz0SERI0a6T0oym0XQmj7vo2rs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "486525628934-n5mio7vgfkevfmkrdae0pqdpsm4fn59u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
