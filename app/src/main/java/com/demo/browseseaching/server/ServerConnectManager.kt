@@ -3,6 +3,7 @@ package com.demo.browseseaching.server
 import com.demo.browseseaching.base.BasePage
 import com.demo.browseseaching.bean.ServerBean
 import com.demo.browseseaching.interfaces.IServerConnectCallback
+import com.demo.browseseaching.util.printLog
 import com.github.shadowsocks.Core
 import com.github.shadowsocks.aidl.IShadowsocksService
 import com.github.shadowsocks.aidl.ShadowsocksConnection

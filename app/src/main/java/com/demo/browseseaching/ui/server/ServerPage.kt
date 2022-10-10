@@ -67,7 +67,7 @@ class ServerPage:BasePage(R.layout.activity_server), IConnectTimeCallback, IServ
     }
 
     private fun preConnect(connect:Boolean){
-        if (connect){
+        if (!connect){
             startDisconnectServer()
         }else{
             updateServerInfo()
@@ -113,7 +113,7 @@ class ServerPage:BasePage(R.layout.activity_server), IConnectTimeCallback, IServ
                     cancel()
                     connectCompleted()
                 }
-                if (time==3){
+                if (time==4){
                     if (connect){
                         ServerConnectManager.connect()
                     }else{

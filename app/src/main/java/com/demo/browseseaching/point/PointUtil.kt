@@ -20,9 +20,10 @@ class PointUtil {
         fun uploadTBA(context: Context){
             OkgoUtil.requestGet("https://ip.seeip.org/geoip/"){
                 GlobalScope.launch {
-                    val jsonObject = PointCommonUtil.assembleCommonJson(context, getIp(it))
+                    val ip = getIp(it)
+                    val jsonObject = PointCommonUtil.assembleCommonJson(context, ip)
                     getInstallReferrerClient(context,jsonObject)
-                    assembleSessionJson(jsonObject)
+                    assembleSessionJson(context,ip)
                 }
             }
 
@@ -83,7 +84,8 @@ class PointUtil {
             OkgoUtil.uploadInstall(jsonObject,true)
         }
 
-        private fun assembleSessionJson(jsonObject: JSONObject) {
+        private fun assembleSessionJson(context: Context,ip:String) {
+            val jsonObject = PointCommonUtil.assembleCommonJson(context, ip)
             jsonObject.put("honshu",JSONObject())
             OkgoUtil.uploadInstall(jsonObject,false)
         }
