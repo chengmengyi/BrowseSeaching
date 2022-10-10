@@ -116,7 +116,8 @@ class ShowNativeAd (private val basePage: BasePage, private val type:String){
         viewNativeAd.setNativeAd(nativeAd)
         ReadFirebase.addAdShowNum()
         basePage.findViewById<AppCompatImageView>(R.id.iv_default).show(false)
-
+        viewNativeAd.show(true)
+        LoadAdManager.check(type)
 //        showNativeAdCompleted()
     }
 

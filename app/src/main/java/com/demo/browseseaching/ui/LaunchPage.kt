@@ -18,9 +18,11 @@ class LaunchPage : BasePage(R.layout.activity_main) {
 
     override fun initView() {
         LoadAdManager.check(AdType.AD_TYPE_OPEN)
+        LoadAdManager.check(AdType.AD_TYPE_HISTORY)
+        LoadAdManager.check(AdType.AD_TYPE_RECENT)
+
         startAnimator()
     }
-
 
     private fun startAnimator(){
         valueAnimator = ValueAnimator.ofInt(0, 100).apply {
