@@ -70,7 +70,11 @@ class PointCommonUtil {
             return jsonObject
         }
 
-        private fun getGaid(context: Context)=AdvertisingIdClient.getAdvertisingIdInfo(context).id
+        private fun getGaid(context: Context)=try {
+            AdvertisingIdClient.getAdvertisingIdInfo(context).id
+        }catch (e:Exception){
+            ""
+        }
 
         private fun getLogId()= UUID.randomUUID().toString()
 
