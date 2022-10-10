@@ -27,8 +27,6 @@ import com.demo.browseseaching.interfaces.IUpdateBottomBtnListener
 import com.demo.browseseaching.util.LitePalUtil
 import com.demo.browseseaching.util.printLog
 import com.demo.browseseaching.util.show
-import kotlinx.android.synthetic.main.activity_search.*
-import java.lang.Exception
 
 class BrowseWebView @JvmOverloads constructor(
     private val ctx: Context,
@@ -150,7 +148,11 @@ class BrowseWebView @JvmOverloads constructor(
                         return true
                     }
                     else{
-                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                        try{
+                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                        }catch (e:Exception){
+
+                        }
                         return true
                     }
                     return false
