@@ -5,18 +5,18 @@ object Config {
     const val url=""
 
     const val BROWSE_AD_CONF="""{
-                "flower_click":15,
+                "flower_click":5,
     "flower_show":50,
     "flower_open": [
         {
             "flower_source": "admob",
-            "flower_id": "ca-app-pub-3940256099942544/3419835294",
+            "flower_id": "ca-app-pub-3940256099942544/8691691433",
             "flower_type": "cha",
             "flower_sort": 1
         },
         {
             "flower_source": "admob",
-            "flower_id": "ca-app-pub-3940256099942544/3419835294A",
+            "flower_id": "ca-app-pub-3940256099942544/3419835294",
             "flower_type": "kai",
             "flower_sort": 2
         },
@@ -30,7 +30,7 @@ object Config {
     "flower_bookmark": [
         {
             "flower_source": "admob",
-            "flower_id": "ca-app-pub-3940256099942544/3419835294",
+            "flower_id": "ca-app-pub-3940256099942544/8691691433",
             "flower_type": "cha",
             "flower_sort": 1
         },
@@ -50,7 +50,7 @@ object Config {
      "flower_later": [
         {
             "flower_source": "admob",
-            "flower_id": "ca-app-pub-3940256099942544/3419835294",
+            "flower_id": "ca-app-pub-3940256099942544/8691691433",
             "flower_type": "cha",
             "flower_sort": 1
         },

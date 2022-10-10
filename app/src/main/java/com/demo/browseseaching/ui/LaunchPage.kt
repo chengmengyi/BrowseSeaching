@@ -6,27 +6,39 @@ import android.view.KeyEvent
 import android.view.animation.LinearInterpolator
 import com.blankj.utilcode.util.ActivityUtils
 import com.demo.browseseaching.R
+import com.demo.browseseaching.admob.AdType
+import com.demo.browseseaching.admob.LoadAdManager
+import com.demo.browseseaching.admob.ShowFullAd
 import com.demo.browseseaching.base.BasePage
 import kotlinx.android.synthetic.main.activity_main.*
 
 class LaunchPage : BasePage(R.layout.activity_main) {
     private var valueAnimator:ValueAnimator?=null
+    private val showAd by lazy { ShowFullAd(this,AdType.AD_TYPE_OPEN){ toHome()} }
 
     override fun initView() {
+        LoadAdManager.check(AdType.AD_TYPE_OPEN)
         startAnimator()
     }
 
 
     private fun startAnimator(){
         valueAnimator = ValueAnimator.ofInt(0, 100).apply {
-            duration = 1000L
+            duration = 10000L
             interpolator = LinearInterpolator()
             addUpdateListener {
                 val progress = it.animatedValue as Int
                 launch_progress.progress = progress
-//                val du = (10 * (progress / 100.0F)).toInt()
-                if (progress >= 100) {
-                    stopAnimator()
+                val du = (10 * (progress / 100.0F)).toInt()
+                if (du in 2..9){
+                    showAd.checkShow { b->
+                        stopAnimator()
+                        launch_progress.progress = 100
+                        if (b){
+                            toHome()
+                        }
+                    }
+                }else if (du>=10){
                     toHome()
                 }
             }
