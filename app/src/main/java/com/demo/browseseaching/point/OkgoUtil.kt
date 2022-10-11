@@ -9,7 +9,7 @@ import org.json.JSONObject
 import java.util.*
 
 object OkgoUtil {
-    const val url="http://pessimaltehran-93fd181fb2ebb945.elb.us-east-1.amazonaws.com/pessimal/tehran/kelly"
+    const val url="https://banquet.flowerbrowse.com/chelsea/cocoa/catalina"
 
     fun requestGet(url:String,result:(json:String)-> Unit){
         OkGo.get<String>(url).execute(object : StringCallback(){
