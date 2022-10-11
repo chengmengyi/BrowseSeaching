@@ -165,15 +165,15 @@ class ServerPage:BasePage(R.layout.activity_server), IConnectTimeCallback, IServ
         iv_connect_server.showInvisible(false)
         lottie_view.show(true)
         tv_connect_time.isSelected=false
-        tv_connect_text.text="Connecting…"
+        tv_connect_text.text="Stopping…"
         iv_connect_btn.setImageResource(R.drawable.server_btn)
         iv_connect_server.setImageResource(R.drawable.server_idle)
     }
 
     private fun updateConnectingUI(){
         iv_connect_server.showInvisible(false)
-        lottie_view.show(false)
-        tv_connect_text.text="Stopping…"
+        lottie_view.show(true)
+        tv_connect_text.text="Connecting…"
         tv_connect_time.isSelected=false
         iv_connect_btn.setImageResource(R.drawable.server_btn)
         iv_connect_server.setImageResource(R.drawable.server_idle)
@@ -181,7 +181,7 @@ class ServerPage:BasePage(R.layout.activity_server), IConnectTimeCallback, IServ
 
     private fun updateConnectedUI(){
         iv_connect_server.showInvisible(true)
-        lottie_view.show(true)
+        lottie_view.show(false)
         tv_connect_time.isSelected=true
         tv_connect_text.text="Disconnect"
         iv_connect_btn.setImageResource(R.drawable.server_connected_btn)
@@ -193,6 +193,7 @@ class ServerPage:BasePage(R.layout.activity_server), IConnectTimeCallback, IServ
         lottie_view.show(false)
         tv_connect_time.isSelected=false
         tv_connect_text.text="Tap To Connect"
+        tv_connect_time.text="00:00:00"
         iv_connect_btn.setImageResource(R.drawable.server_btn)
         iv_connect_server.setImageResource(R.drawable.server_idle)
     }

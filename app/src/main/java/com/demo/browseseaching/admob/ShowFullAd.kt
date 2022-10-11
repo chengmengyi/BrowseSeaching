@@ -70,9 +70,9 @@ class ShowFullAd(
     }
 
     private fun fullAdShowCompleted(){
-//        if (adLocation==Ad0914LocationStr.AD_CONNECT){
-//            Load0914AdObject.loadLogic(adLocation)
-//        }
+        if (type==AdType.AD_TYPE_CONNECT){
+            LoadAdManager.check(type)
+        }
         GlobalScope.launch(Dispatchers.Main) {
             delay(200L)
             if (basePage.resume){

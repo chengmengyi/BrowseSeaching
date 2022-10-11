@@ -2,9 +2,10 @@ package com.demo.browseseaching.config
 
 import com.demo.browseseaching.bean.ServerBean
 import com.demo.browseseaching.util.createNumKey
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.tencent.mmkv.MMKV
 import org.json.JSONObject
-import java.lang.Exception
 
 object ReadFirebase {
     private var maxShowNum=50
@@ -12,7 +13,8 @@ object ReadFirebase {
 
     private var showedNum=0
     private var clickedNum=0
-    
+
+    var dialogStatus="0"
     val city= arrayListOf<String>()
     val serverList= arrayListOf<ServerBean>()
 
@@ -25,6 +27,7 @@ object ReadFirebase {
 //                readAdConf(remoteConfig.getString("ad"))
 //                readServer(remoteConfig.getString("flower_server"))
 //                readCity(remoteConfig.getString("flower_city"))
+//                dialogStatus=remoteConfig.getString("dialog_status")
 //            }
 //        }
     }

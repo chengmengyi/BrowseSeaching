@@ -45,6 +45,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.server.ServerPage"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.server.ResultPage"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
